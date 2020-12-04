@@ -1,5 +1,5 @@
 from MANSYS import db, bcrypt
-from MANSYS.models import User, Server1, Server2, Server3, Server4
+from MANSYS.models import User, System, Server1, Server2, Server3, Server4
 import random
 
 if __name__=="__main__":
@@ -8,11 +8,16 @@ if __name__=="__main__":
 	# server1 = Server1()
 	# for i in range(21):
 	# 	server1.time_slots[i] = random.choice([True,False])
-	
+	# system = System.query.filter_by(id=1).first()
+	# print(system.date)
+	# db.session.add(system)
+	# db.session.commit()
 	# db.session.add(server1)
 	# server1 = Server1.query.filter_by(id=1).first()
 	# print(server1.t1)
-	# server2 = Server2()
+	# server2 = Server2.query.filter_by(id=1).first()
+	# server2.t1 = '2015-12-05;'
+	# print(server2.t1)
 	# for i in range(21):
 	# 	server2.time_slots[i] = random.choice([True,False])
 	
@@ -33,20 +38,21 @@ if __name__=="__main__":
 	# db.session.commit()
 
 	# hashed_pw = bcrypt.generate_password_hash("password").decode('utf-8')
-	# user1 = User(username="BenAndrew310",
-	# 			email="benandrew2442@gmail.com",
+	# user1 = User(username="benandrew",
+	# 			email="andreben2442@gmail.com",
 	# 			password=hashed_pw)
-
+ 
 	# db.session.add(user1)
 	# db.session.commit()
 
 	# user2 = User(username="Marc",
-	# 			email="marc_etienne@gmail.com",
+	# 			email="marcetienne@gmail.com",
 	# 			password=hashed_pw)
 
 	# db.session.add(user2)
 	# db.session.commit()
-
+	# user = User.query.filter_by(username='Marc').first()
+	# print(user.time_slot)
 	# users = User.query.all()
 	# server1s = Server1.query.all()
 	# server2s = Server2.query.all()

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body_content %}
+
+<style>
+	#reserv-table{
+		margin-top: 100px;
+	}
+</style>
+
+<div class="container" id="reserv-table">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>DATE</th>
+				<th>TIME</th>
+				<th>SERVER</th>
+				<th></th>
+			</tr> 
+		</thead>
+		<tbody>
+			{% for reserv in reservations %}
+				<tr>
+					<td>{{ reserv[1:11] }}</td>
+					<td>{{ reserv[12:17] }}</td>
+					<td> server {{ reserv[-2] }}</td>
+					<td>
+						<a class="btn btn-outline-primary" role="button" 
+						href="{{ url_for('delete_reservation',date=reserv[1:11], time=reserv[12:17], serv=reserv[-2]) }}">delete</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+{% endblock %}

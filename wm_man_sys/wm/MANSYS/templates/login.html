@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- {% if refresh_on %}
+	    <meta http-equiv="refresh" content="5" >
+	{% endif %} -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main.css') }}"> -->
+
+    <style>
+    	html,body{
+    		background-color: gainsboro;
+    	}
+
+    	.container{
+    		align-content: center;
+    		padding-top: 70px;
+    	}
+
+    	.card{
+    		box-shadow: 0 4px 8px 0 dimgrey, 0 6px 20px 0 dimgrey;
+    	}
+
+    	#login-card{
+    		padding-top: 100px;
+    	}
+
+    	.input-group-prepend span{
+			width: 50px;
+			/*background-color: #FFC312;*/
+			color: black;
+			border:0 !important;
+		}
+
+		.input-group{
+			padding-bottom:10px;
+		}
+    </style>
+
+	{% if title %}
+		<title>{{ title }}</title>
+	{% else %}
+		<title>APS Pocket</title>
+	{% endif %}
+
+</head>
+<body>
+	<div style="text-align: center; background-color: #ADFF2F;">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+	  		{% if messages %}
+				{% for category, message in messages %}
+					<div class="alert alert-{{ category }}">{{ message }}</div>
+				{% endfor %}
+	  		{% endif %}
+		{% endwith %}
+	</div>
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			<div class="card" id="login-card">
+				<div class="card-header" style="text-align: center;">
+					LOGIN
+				</div>
+				<div class="card-body">
+					<form style="margin-top: 10px;" method="POST">
+						{{ form.hidden_tag() }}
+						{{ form.csrf_token }}
+						<fieldset class="input-group form-group">
+							<div class="input-group">
+								<!-- {{ form.email.label(class="form-control-label") }} -->
+								<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-user"></i></span></div>
+								{% if form.email.errors %}
+									{{ form.email(class="form-control form-control-lg is-invalid",size=20) }}
+									<div class="invalid-feedback">
+										{% for error in form.email.errors %}
+											<span>{{ error }}</span>
+										{% endfor %}
+									</div>
+								{% else %}
+									{{ form.email(class="form-control form-control-lg",size=20) }}
+								{% endif %}
+								<!-- <small class="form-text text-muted">A new email doesn't make changes to your user key <a style="color:red;font-size: 20px;">*</a></small> -->
+								<!-- {{ form.email(class="form-control form-control-lg",size=20) }} -->
+							</div>
+							<div class="input-group">
+								<!-- {{ form.password.label(class="form-control-label") }} -->
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								{% if form.password.errors %}
+									{{ form.password(class="form-control form-control-lg is-invalid",size=20) }}
+									<div class="invalid-feedback">
+										{% for error in form.password.errors %}
+											<span>{{ error }}</span>
+										{% endfor %}
+									</div>
+								{% else %}
+									{{ form.password(class="form-control form-control-lg",size=20) }}
+								{% endif %}
+								<!-- {{ form.password(class="form-control form-control-lg",size=20) }} -->
+							</div>
+							<div style="color: black;" class="form-check">
+								{{ form.remember(class="form-check-input") }}
+								{{ form.remember.label(class="form-check-label") }}
+							</div>
+							<small style="padding-top: 5px;">I don't have an account yet. <a href="#">Sign up</a></small>
+						</fieldset>
+						<div class="form-group">
+							{{ form.submit(class="btn btn-info") }}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://kit.fontawesome.com/ea963e56e4.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
