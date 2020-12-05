@@ -121,7 +121,7 @@ class System(db.Model):
 
 '''
 time_slot column format:
-(2020-12-05,09:00,serv1)(2020-12-05,09:00,serv2).......
+(2020-12-05,09:00,serv1,xxx)(2020-12-05,09:00,serv2,xxx).......
 '''
 
 class User(db.Model, UserMixin):

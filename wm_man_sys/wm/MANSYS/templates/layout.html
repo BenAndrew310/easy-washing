@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<style>
-		body{
-			background-image: '../static/Images/machines.jpg';
+		#body-content{
+			background-image: '/static/Images/machines.jpg';
+			/*background-image: "{{ url_for('static', filename='Images/machines.jpg') }}";*/
 			background-size: cover;
 		}
 	</style>
@@ -47,17 +48,19 @@
 							<a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
 						</li>
 					</ul>
-					
-					{% block nav_searchbar %} {% endblock %}
-					
+			    </div>
+			    <div class="ml-5" style="font-size: 20px;">
+			    	<em>Hi {{ current_user.username }}</em>
 			    </div>
 		</nav>
+					
+					
 
 		<header>
 			{% block header_content %} {% endblock %}
 		</header>
 
-		<div class="container">
+		<div class="container" id="body-content">
 			<div style="text-align: center; background-color: #ADFF2F; margin-top: 100px;">
 				{% with messages = get_flashed_messages(with_categories=true) %}
 			  		{% if messages %}

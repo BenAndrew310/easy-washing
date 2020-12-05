@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,SubmitField,PasswordField,BooleanField,DateField,SelectField
 from wtforms.validators import DataRequired,Length,EqualTo,ValidationError
+from MANSYS.models import User
 import datetime
+
 
 def get_time_slots(start="09:00",stop_="23:00",delay=40):
     ts = [start]
@@ -56,6 +58,26 @@ class Login(FlaskForm):
 	remember = BooleanField('Remember me')
 
 	submit = SubmitField('Login')
+
+class SignUp(FlaskForm):
+	username = StringField('Username', validators=[DataRequired(),Length(min=4,max=20)], render_kw={"placeholder": "username"})
+	email = StringField('Email', validators=[DataRequired(),Length(min=4,max=100)], render_kw={"placeholder": "email"})
+	password = PasswordField('Password',validators=[DataRequired(),Length(min=6,max=60)],render_kw={"placeholder": "password"})
+	confirm_password = PasswordField('Confirm Password',
+			validators=[DataRequired(),EqualTo('password')],
+			render_kw={"placeholder": "confirm password"})
+
+	submit = SubmitField('Sign up')
+
+	def validate_username(self,username):
+		user = User.query.filter_by(username=username.data).first()
+		if user:
+			raise ValidationError("That username is already taken.")
+
+	def validate_email(self,email):
+		user = User.query.filter_by(email=email.data).first()
+		if user:
+			raise ValidationError("That email is already taken.")
 
 class Register(FlaskForm):
 	date = SelectField('Select a date', choices=DATES ,validators=[DataRequired()])

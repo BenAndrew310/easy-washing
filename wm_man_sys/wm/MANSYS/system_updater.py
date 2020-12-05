@@ -27,7 +27,7 @@ class SYSTEM_UPDATER:
 			sleep(delay.seconds+60)
 
 	def update_users(self,yesterday):
-		offset = 24
+		offset = 28
 		yesterday = yesterday.strftime('%Y-%m-%d')
 		for user in self.Users:
 			utime = user.time_slot
@@ -43,6 +43,13 @@ class SYSTEM_UPDATER:
 		t = Thread(target=self.check_date)
 		t.daemon = True
 		t.start()
+
+	def reservation_is_valid(self,date,time):
+		d = datetime.datetime.now()
+		t = f'{d.hour}:{d.minute}'
+		if time <= t and datetime.date.today().strftime('%Y-%m-%d') == date:
+			return False
+		return True
 
 	def get_activation_code(self,n=3):
 		code = [str(random.randint(0,9)) for x in range(n)]

@@ -64,13 +64,30 @@
 		<div class="d-flex justify-content-center">
 			<div class="card" id="login-card">
 				<div class="card-header" style="text-align: center;">
-					LOGIN
+					SIGN UP
 				</div>
 				<div class="card-body">
 					<form style="margin-top: 10px;" method="POST">
 						{{ form.hidden_tag() }}
 						{{ form.csrf_token }}
 						<fieldset class="input-group form-group">
+							<div class="input-group">
+								<!-- {{ form.username.label(class="form-control-label") }} -->
+								<div class="input-group-prepend">
+								<span class="input-group-text"><i class="fas fa-user"></i></span></div>
+								{% if form.username.errors %}
+									{{ form.username(class="form-control form-control-lg is-invalid",size=20) }}
+									<div class="invalid-feedback">
+										{% for error in form.username.errors %}
+											<span>{{ error }}</span>
+										{% endfor %}
+									</div>
+								{% else %}
+									{{ form.username(class="form-control form-control-lg",size=20) }}
+								{% endif %}
+								<!-- <small class="form-text text-muted">A new username doesn't make changes to your user key <a style="color:red;font-size: 20px;">*</a></small> -->
+								<!-- {{ form.username(class="form-control form-control-lg",size=20) }} -->
+							</div>
 							<div class="input-group">
 								<!-- {{ form.email.label(class="form-control-label") }} -->
 								<div class="input-group-prepend">
@@ -105,11 +122,24 @@
 								{% endif %}
 								<!-- {{ form.password(class="form-control form-control-lg",size=20) }} -->
 							</div>
-							<div style="color: black; padding-right: 10px;" class="form-check">
-								{{ form.remember(class="form-check-input") }}
-								{{ form.remember.label(class="form-check-label") }}
+							<div class="input-group">
+								<!-- {{ form.confirm_password.label(class="form-control-label") }} -->
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fa fa-key"></i></span>
+								</div>
+								{% if form.confirm_password.errors %}
+									{{ form.confirm_password(class="form-control form-control-lg is-invalid",size=20) }}
+									<div class="invalid-feedback">
+										{% for error in form.confirm_password.errors %}
+											<span>{{ error }}</span>
+										{% endfor %}
+									</div>
+								{% else %}
+									{{ form.confirm_password(class="form-control form-control-lg",size=20) }}
+								{% endif %}
+								<!-- {{ form.confirm_password(class="form-control form-control-lg",size=20) }} -->
 							</div>
-							<small style="padding-top: 5px;"> Don't have an account yet? <a href="{{ url_for('signup') }}">Sign up</a></small>
+							<small style="padding-top: 5px;">Already have an account? <a href="{{ url_for('login') }}"> Login</a></small>
 						</fieldset>
 						<div class="form-group">
 							{{ form.submit(class="btn btn-info") }}

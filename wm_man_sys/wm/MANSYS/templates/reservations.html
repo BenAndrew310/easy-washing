@@ -14,6 +14,7 @@
 				<th>DATE</th>
 				<th>TIME</th>
 				<th>SERVER</th>
+				<th>ACTIVATION CODE</th>
 				<th></th>
 			</tr> 
 		</thead>
@@ -22,10 +23,11 @@
 				<tr>
 					<td>{{ reserv[1:11] }}</td>
 					<td>{{ reserv[12:17] }}</td>
-					<td> server {{ reserv[-2] }}</td>
+					<td> server {{ reserv[22] }}</td>
+					<td>{{ reserv[24:-1] }}</td>
 					<td>
 						<a class="btn btn-outline-primary" role="button" 
-						href="{{ url_for('delete_reservation',date=reserv[1:11], time=reserv[12:17], serv=reserv[-2]) }}">delete</a>
+						href="{{ url_for('delete_reservation',date=reserv[1:11], time=reserv[12:17], serv=reserv[22]) }}">delete</a>
 					</td>
 				</tr>
 			{% endfor %}
