@@ -23,13 +23,13 @@ def home():
 		time = str(form.time.data)
 		serv = str(form.server.data)
 
-		if serv == "server 1":
+		if serv == "Washing machine 1":
 			server=Server1.query.filter_by(id=1).first()
-		elif serv == "server 2":
+		elif serv == "Washing machine 2":
 			server=Server2.query.filter_by(id=1).first()
-		elif serv == "server 3":
+		elif serv == "Washing machine 3":
 			server=Server3.query.filter_by(id=1).first()
-		elif serv == "server 4":
+		elif serv == "Washing machine 4":
 			server=Server4.query.filter_by(id=1).first()
 
 		for ind,t in enumerate(TIMES):

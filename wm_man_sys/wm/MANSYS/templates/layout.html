@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html>
 	<style>
-		#body-content{
-			background-image: '/static/Images/machines.jpg';
-			/*background-image: "{{ url_for('static', filename='Images/machines.jpg') }}";*/
+		body, html {
+			height: 100%;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.bg-image {
+			background-image: url('../static/Images/nthu_bg.png');
+			/*filter: blur(10px);
+			-webkit-filter: blur(10px);*/
+
+			/* Full height */
+			height: 130%;
+
+			/* Center and scale the image nicely */
+			background-position: center;
+			background-repeat: no-repeat;
 			background-size: cover;
+		}
+
+		#body-content {
+			font-weight: bold;
+			/*border: 5px dotted #790671;*/
+			position: absolute;
+			top: 50%;
+			/*left: 50%;*/
+			transform: translate(200px, -400px);
+			z-index: 2;
+			width: 80%;
+			padding: 20px;
+			text-align: left;
 		}
 	</style>
 	<head>
@@ -28,9 +57,9 @@
 
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+		<nav style="background-color: #EE82EE" class="navbar navbar-expand-lg navbar-light fixed-top">
 			
-				<a style="font-family:cursive;" class="navbar-brand" href="{{ url_for('home') }}">Easy Washing</a>
+				<a style="font-family:cursive; color: white;" class="navbar-brand" href="{{ url_for('home') }}">Easy Washing</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 				</button>
@@ -60,6 +89,7 @@
 			{% block header_content %} {% endblock %}
 		</header>
 
+		<div class="bg-image"></div>
 		<div class="container" id="body-content">
 			<div style="text-align: center; background-color: #ADFF2F; margin-top: 100px;">
 				{% with messages = get_flashed_messages(with_categories=true) %}

@@ -4,6 +4,8 @@
 <style>
 	#reserv-table{
 		margin-top: 100px;
+		/*f: white;*/
+		background-color: #EEB9EA;
 	}
 </style>
 
@@ -23,10 +25,10 @@
 				<tr>
 					<td>{{ reserv[1:11] }}</td>
 					<td>{{ reserv[12:17] }}</td>
-					<td> server {{ reserv[22] }}</td>
+					<td> Machine {{ reserv[22] }}</td>
 					<td>{{ reserv[24:-1] }}</td>
 					<td>
-						<a class="btn btn-outline-primary" role="button" 
+						<a class="btn btn-outline-danger" role="button" 
 						href="{{ url_for('delete_reservation',date=reserv[1:11], time=reserv[12:17], serv=reserv[22]) }}">delete</a>
 					</td>
 				</tr>

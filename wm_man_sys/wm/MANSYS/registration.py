@@ -82,6 +82,6 @@ class SignUp(FlaskForm):
 class Register(FlaskForm):
 	date = SelectField('Select a date', choices=DATES ,validators=[DataRequired()])
 	time = SelectField('Select a time', choices = TIMES , validators=[DataRequired()])
-	server = SelectField('Select a server', choices = ['server 1','server 2','server 3','server 4'], validators=[DataRequired()])
+	server = SelectField('Select a machine', choices = ['Washing machine 1','Washing machine 2','Washing machine 3','Washing machine 4'], validators=[DataRequired()])
 
 	submit = SubmitField('Register')
